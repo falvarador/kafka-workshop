@@ -15,14 +15,16 @@ public class Example2
     {
         var config = new ProducerConfig
         {
+            Acks = Acks.All,
+            BatchNumMessages = 10000,
             BootstrapServers = "127.0.0.1:9092",
             ClientId = "demo-producer",
-            // SecurityProtocol = SecurityProtocol.SaslSsl,
-            Acks = Acks.All,
-            MessageTimeoutMs = 300000,
-            BatchNumMessages = 10000,
-            LingerMs = 5,
             CompressionType = CompressionType.Gzip,
+            EnableIdempotence = true,
+            LingerMs = 5,
+            MaxInFlight = 5,
+            MessageTimeoutMs = 300000,
+            Retries = 3,
         };
 
         var jsonSerializer = new CustomJsonSerializer<Bookmark>(new JsonSerializerOptions

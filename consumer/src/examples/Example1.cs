@@ -10,6 +10,7 @@ public class Example1
         {
             BootstrapServers = "127.0.0.1:9092",
             GroupId = "demo-consumer",
+            AutoOffsetReset = AutoOffsetReset.Earliest
         };
 
         var consumer = new ConsumerBuilder<string, string>(config).Build();
